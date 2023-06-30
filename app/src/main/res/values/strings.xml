@@ -2,5 +2,10 @@
     <string name="app_name">AndroidMaster</string>
     <string name="female">Mujer</string>
     <string name="male">Hombre</string>
-
+    <string name="height">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="age">Age</string>
+    <string name="calculate">Calcular</string>
+    <string name="result">Your result</string>
+    <string name="Recalculate">Re calcular\n</string>
 </resources>
