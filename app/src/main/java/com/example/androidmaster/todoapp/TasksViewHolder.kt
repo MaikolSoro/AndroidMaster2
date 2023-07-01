@@ -11,31 +11,28 @@ import com.example.androidmaster.R
 
 class TasksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val tvTask: TextView = view.findViewById(R.id.tvTask)
-    private val cbTask: CheckBox = view.findViewById(R.id.cbCheckBox)
+    private val cbCheckBox: CheckBox = view.findViewById(R.id.cbCheckBox)
 
     fun render(task: Task) {
+
 
         if (task.isSelected) {
             tvTask.paintFlags = tvTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         } else {
-            tvTask.paintFlags = tvTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            tvTask.paintFlags = tvTask.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
+
         tvTask.text = task.name
-        cbTask.isSelected = task.isSelected
+        cbCheckBox.isChecked = task.isSelected
 
         val color = when (task.category) {
-            TaskCategory.Business ->
-                R.color.todo_business_category
-
-            TaskCategory.Other ->
-                R.color.todo_other_category
-
+            TaskCategory.Business -> R.color.todo_business_category
+            TaskCategory.Other -> R.color.todo_other_category
             TaskCategory.Personal -> R.color.todo_personal_category
-
-
         }
-        cbTask.backgroundTintList = ColorStateList.valueOf(
-            ContextCompat.getColor(cbTask.context, color)
+
+        cbCheckBox.buttonTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(cbCheckBox.context, color)
         )
     }
 }
