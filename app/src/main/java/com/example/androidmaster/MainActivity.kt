@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.androidmaster.firstapp.FirstAppActivity
 import com.example.androidmaster.imccalculator.ImcCalculatorActivity
+import com.example.androidmaster.superheroapp.SuperHeroListActivity
 import com.example.androidmaster.todoapp.TodoActivity
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnGreetApp:Button
-    private lateinit var btnImcApp:Button
-    private lateinit var btnTODO:Button
+    private lateinit var btnGreetApp: Button
+    private lateinit var btnImcApp: Button
+    private lateinit var btnTODO: Button
+    private lateinit var btnSuperHero: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,17 +21,20 @@ class MainActivity : AppCompatActivity() {
         btnGreetApp = findViewById(R.id.btnHelloApp)
         btnImcApp = findViewById(R.id.btnIMCApp)
         btnTODO = findViewById(R.id.btnTODO)
-
+        btnSuperHero = findViewById(R.id.btnSuperHero)
         initListeners()
 
     }
 
     private fun initListeners() {
-        btnGreetApp.setOnClickListener { navigateGreetApp()  }
+        btnGreetApp.setOnClickListener { navigateGreetApp() }
 
         btnImcApp.setOnClickListener { navigateToIcmApp() }
 
         btnTODO.setOnClickListener { navigateToTodoApp() }
+
+        btnSuperHero.setOnClickListener { navigateToSuperHeroApp() }
+
     }
 
     private fun navigateToTodoApp() {
@@ -37,13 +42,18 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateGreetApp(){
+    private fun navigateGreetApp() {
         val intent = Intent(this, FirstAppActivity::class.java)
         startActivity(intent)
     }
 
-    private fun navigateToIcmApp(){
+    private fun navigateToIcmApp() {
         val intent = Intent(this, ImcCalculatorActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToSuperHeroApp() {
+        val intent = Intent(this, SuperHeroListActivity::class.java)
         startActivity(intent)
     }
 }
