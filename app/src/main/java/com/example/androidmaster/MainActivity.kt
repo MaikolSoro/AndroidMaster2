@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.androidmaster.firstapp.FirstAppActivity
 import com.example.androidmaster.imccalculator.ImcCalculatorActivity
+import com.example.androidmaster.settings.SettingActivity
 import com.example.androidmaster.superheroapp.SuperHeroListActivity
 import com.example.androidmaster.todoapp.TodoActivity
 
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnImcApp: Button
     private lateinit var btnTODO: Button
     private lateinit var btnSuperHero: Button
+    private lateinit var btnSettings: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         btnImcApp = findViewById(R.id.btnIMCApp)
         btnTODO = findViewById(R.id.btnTODO)
         btnSuperHero = findViewById(R.id.btnSuperHero)
+        btnSettings = findViewById(R.id.btnSettings)
+
         initListeners()
 
     }
@@ -34,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         btnTODO.setOnClickListener { navigateToTodoApp() }
 
         btnSuperHero.setOnClickListener { navigateToSuperHeroApp() }
+
+        btnSettings.setOnClickListener { navigateToSettings() }
 
     }
 
@@ -54,6 +60,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToSuperHeroApp() {
         val intent = Intent(this, SuperHeroListActivity::class.java)
+        startActivity(intent)
+    }
+    private fun navigateToSettings() {
+        val intent = Intent(this, SettingActivity::class.java)
         startActivity(intent)
     }
 }
