@@ -1,8 +1,11 @@
 package com.example.androidmaster.settings
 
+import android.app.UiModeManager.MODE_NIGHT_NO
+import android.app.UiModeManager.MODE_NIGHT_YES
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -74,6 +77,18 @@ class SettingActivity : AppCompatActivity() {
                 saveOptions(KEY_VIBRATION, value)
             }
         }
+        binding.switchDarkMode.setOnCheckedChangeListener { _, value ->
+
+            if (value) {
+                enableDarkMode()
+            } else {
+                disableDarkMode()
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                saveOptions(KEY_DARK_MODE, value)
+            }
+        }
     }
 
     private fun getSettings(): Flow<SettingsModel?> {
@@ -98,5 +113,15 @@ class SettingActivity : AppCompatActivity() {
             preferences[booleanPreferencesKey(key)] = value
 
         }
+    }
+
+    private fun enableDarkMode() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        delegate.applyDayNight()
+    }
+
+    private fun disableDarkMode() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        delegate.applyDayNight()
     }
 }
